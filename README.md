@@ -5,7 +5,6 @@
 - [Estructura de Directorios](#estructura-de-directorios)
 - [Componentes](#categorización-de-componentes)
 - [Enrutamiento](#sistema-de-enrutamiento)
-- [Route](#route)
 - [CSS](#css)
 
 ---
