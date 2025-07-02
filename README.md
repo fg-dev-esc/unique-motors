@@ -121,8 +121,8 @@ pages/
 
 <div align="center">
 
-![License](https://img.shields.io/badge/Template-ThemesLand_License-FF6B35?style=flat-square)
+![License](https://img.shields.io/badge/Template-ThemesLand-FF6B35?style=flat-square)
 ![React](https://img.shields.io/badge/React_Code-Luis_Fernández-61DAFB?style=flat-square)
-![Status](https://img.shields.io/badge/Estatus_Legal-Compliant-4CAF50?style=flat-square)
+![Status](https://img.shields.io/badge/License-Compliant-4CAF50?style=flat-square)
 
 </div>
