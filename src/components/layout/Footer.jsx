@@ -22,21 +22,21 @@ const Footer = () => {
                   <img src="/assets/img/logo/logo-light.png" alt="" />
                 </Link>
                 <p className="mb-3">
-                  We are many variations of passages available but the majority have suffered alteration
-                  in some form by injected humour words believable.
+                  Somos la plataforma líder en subastas de vehículos premium, conectando compradores 
+                  y vendedores en un ambiente seguro y transparente desde hace más de 10 años.
                 </p>
                 <ul className="footer-contact">
                   <li>
-                    <a href="tel:+21236547898">
-                      <i className="far fa-phone"></i>+2 123 654 7898
+                    <a href="tel:+525512345678">
+                      <i className="far fa-phone"></i>+52 55 1234 5678
                     </a>
                   </li>
                   <li>
-                    <i className="far fa-map-marker-alt"></i>25/B Milford Road, New York
+                    <i className="far fa-map-marker-alt"></i>Av. Reforma 123, Ciudad de México
                   </li>
                   <li>
-                    <a href="mailto:info@example.com">
-                      <i className="far fa-envelope"></i>info@example.com
+                    <a href="mailto:info@premiumauctions.com">
+                      <i className="far fa-envelope"></i>info@premiumauctions.com
                     </a>
                   </li>
                 </ul>
@@ -44,31 +44,31 @@ const Footer = () => {
             </div>
             <div className="col-md-6 col-lg-2">
               <div className="footer-widget-box list">
-                <h4 className="footer-widget-title">Quick Links</h4>
+                <h4 className="footer-widget-title">Enlaces Rápidos</h4>
                 <ul className="footer-list">
                   <li>
                     <Link to="/about">
-                      <i className="fas fa-caret-right"></i> About Us
+                      <i className="fas fa-caret-right"></i> Sobre Nosotros
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/cars">
+                      <i className="fas fa-caret-right"></i> Subastas Activas
                     </Link>
                   </li>
                   <li>
                     <a href="#">
-                      <i className="fas fa-caret-right"></i> Update News
+                      <i className="fas fa-caret-right"></i> Términos de Servicio
                     </a>
                   </li>
                   <li>
-                    <Link to="/terms">
-                      <i className="fas fa-caret-right"></i> Terms Of Service
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/privacy">
-                      <i className="fas fa-caret-right"></i> Privacy policy
-                    </Link>
+                    <a href="#">
+                      <i className="fas fa-caret-right"></i> Política de Privacidad
+                    </a>
                   </li>
                   <li>
                     <a href="#">
-                      <i className="fas fa-caret-right"></i> Our Team
+                      <i className="fas fa-caret-right"></i> Nuestro Equipo
                     </a>
                   </li>
                 </ul>
@@ -76,31 +76,31 @@ const Footer = () => {
             </div>
             <div className="col-md-6 col-lg-3">
               <div className="footer-widget-box list">
-                <h4 className="footer-widget-title">Support Center</h4>
+                <h4 className="footer-widget-title">Centro de Ayuda</h4>
                 <ul className="footer-list">
                   <li>
                     <a href="#">
-                      <i className="fas fa-caret-right"></i> Help Center
+                      <i className="fas fa-caret-right"></i> Centro de Ayuda
                     </a>
                   </li>
                   <li>
                     <a href="#">
-                      <i className="fas fa-caret-right"></i> FAQ's
+                      <i className="fas fa-caret-right"></i> Preguntas Frecuentes
                     </a>
                   </li>
                   <li>
                     <a href="#">
-                      <i className="fas fa-caret-right"></i> Booking Tips
+                      <i className="fas fa-caret-right"></i> Guías de Subasta
                     </a>
                   </li>
                   <li>
                     <a href="#">
-                      <i className="fas fa-caret-right"></i> Live Chat
+                      <i className="fas fa-caret-right"></i> Chat en Vivo
                     </a>
                   </li>
                   <li>
                     <Link to="/contact">
-                      <i className="fas fa-caret-right"></i> Contact Us
+                      <i className="fas fa-caret-right"></i> Contáctanos
                     </Link>
                   </li>
                 </ul>
@@ -108,21 +108,21 @@ const Footer = () => {
             </div>
             <div className="col-md-6 col-lg-3">
               <div className="footer-widget-box list">
-                <h4 className="footer-widget-title">Newsletter</h4>
+                <h4 className="footer-widget-title">Boletín Informativo</h4>
                 <div className="footer-newsletter">
-                  <p>Subscribe Our Newsletter To Get Latest Update And News</p>
+                  <p>Suscríbete a nuestro boletín para recibir las últimas subastas y noticias del mundo automotriz</p>
                   <div className="subscribe-form">
                     <form onSubmit={handleNewsletterSubmit}>
                       <input 
                         type="email" 
                         className="form-control" 
-                        placeholder="Your Email"
+                        placeholder="Tu Email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
                       />
                       <button className="theme-btn" type="submit">
-                        Subscribe Now <i className="far fa-paper-plane"></i>
+                        Suscribirse <i className="far fa-paper-plane"></i>
                       </button>
                     </form>
                   </div>
@@ -137,7 +137,7 @@ const Footer = () => {
           <div className="row">
             <div className="col-md-6 align-self-center">
               <p className="copyright-text">
-                &copy; Copyright <span id="date">{new Date().getFullYear()}</span> <Link to="/"> carway </Link> All Rights Reserved.
+                &copy; Copyright {new Date().getFullYear()} <a href="#"> Premium Auto Auctions </a> Todos los Derechos Reservados.
               </p>
             </div>
             <div className="col-md-6 align-self-center">
