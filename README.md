@@ -3,8 +3,8 @@
 ### Índice
 - [Stack Tecnológico](#stack-tecnológico)
 - [Estructura de Directorios](#estructura-de-directorios)
-- [Componentes](#categorización-de-componentes)
-- [Enrutamiento](#sistema-de-enrutamiento)
+- [Componentes](#componentes)
+- [Enrutamiento](#enrutamiento)
 - [Integración CSS](#css)
 - [Información del Proyecto](#información-del-proyecto)
 
