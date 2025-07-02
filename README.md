@@ -1,9 +1,15 @@
 # Documentación Técnica
+
 ### Índice
+- [Stack Tecnológico](#stack-tecnológico)
 - [Estructura de Directorios](#estructura-de-directorios)
-- [Sistema de Enrutamiento](#sistema-de-enrutamiento)
-- [Integración CSS](#integración-css)
+- [Componentes](#categorización-de-componentes)
+- [Enrutamiento](#sistema-de-enrutamiento)
+- [Route](#route)
+- [CSS](#css)
+
 ---
+
 ## Stack Tecnológico
 ```javascript
 {
@@ -49,7 +55,7 @@ src/
 └── main.jsx             
 ```
 
-## Categorización de Componentes
+## Componentes
 
 | Tipo | Propósito | Ejemplos |
 |------|-----------|----------|
@@ -59,7 +65,7 @@ src/
 | **ui** | elementos reutilizables | breadCrumb, scrollTop |
 
 
-## Sistema de Enrutamiento
+## Enrutamiento
 
 ```javascript
 import { routes, route } from 'react-router-dom';
@@ -83,7 +89,7 @@ pages/
 └── services.jsx           route: /services
 ```
 
-## Integración CSS
+## CSS
 
 ```css
 @import url('/assets/css/bootstrap.min.css');
@@ -95,3 +101,28 @@ pages/
 @import url('/assets/css/jquery.timepicker.min.css');
 @import url('/assets/css/style.css');
 ```
+---
+
+
+### Información del Proyecto
+
+
+| **Desarrollo React** | **Luis Fernández** |
+|---|---|
+| **Template Base** | Carway - Car Rental HTML5 Template |
+| **Creación Template** | 22/08/2022 |
+| **Última Actualización Template** | 29/04/2024 |
+| **Adaptación React** | 2025 |
+| **README** | Luis Fernández |
+
+### **Nota Legal**
+
+> Esta adaptación React respeta los términos de licencia del template original "Carway" de ThemesLand. El código React es desarrollo original de Luis Fernández basado en el diseño y funcionalidades del template licenciado.
+
+<div align="center">
+
+![License](https://img.shields.io/badge/Template-ThemesLand_License-FF6B35?style=flat-square)
+![React](https://img.shields.io/badge/React_Code-Luis_Fernández-61DAFB?style=flat-square)
+![Status](https://img.shields.io/badge/Estatus_Legal-Compliant-4CAF50?style=flat-square)
+
+</div>
