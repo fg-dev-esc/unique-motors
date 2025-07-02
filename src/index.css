@@ -1,0 +1,113 @@
+/* Importar todos los estilos del proyecto original */
+@import url('/assets/css/bootstrap.min.css');
+@import url('/assets/css/all-fontawesome.min.css');
+@import url('/assets/css/animate.min.css');
+@import url('/assets/css/magnific-popup.min.css');
+@import url('/assets/css/owl.carousel.min.css');
+@import url('/assets/css/jquery-ui.min.css');
+@import url('/assets/css/jquery.timepicker.min.css');
+@import url('/assets/css/style.css');
+
+/* Estilos adicionales para React */
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Reset básico */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Secciones que necesitan ancho completo */
+.hero-section,
+.header {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+/* Override para el tema del sitio */
+body {
+  margin: 0;
+  color: #333;
+  background-color: #fff;
+}
+
+/* Preloader styles */
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader-ripple {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.loader-ripple div {
+  position: absolute;
+  border: 4px solid #ff6b35;
+  opacity: 1;
+  border-radius: 50%;
+  animation: loader-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+.loader-ripple div:nth-child(2) {
+  animation-delay: -0.5s;
+}
+
+@keyframes loader-ripple {
+  0% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 0px;
+    left: 0px;
+    width: 72px;
+    height: 72px;
+    opacity: 0;
+  }
+}
+
+/* Asegurar que las animaciones funcionen */
+.wow {
+  visibility: hidden;
+}
+
+.wow.animate__animated {
+  visibility: visible;
+}
