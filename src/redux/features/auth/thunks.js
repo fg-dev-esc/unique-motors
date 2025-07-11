@@ -9,7 +9,7 @@ import {
   setResponseReg,
 } from "./userSlice";
 import { parseJwt, setTokenToStorage, removeTokenFromStorage } from "../../../utils/jwtHelper";
-import { consLogged } from "../../../const/consLogged";
+import { consLogged } from "../../../const/consLogged.js";
 import { setModalLogin } from "../../shared/modalSlice";
 
 

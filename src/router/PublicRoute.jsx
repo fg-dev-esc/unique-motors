@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router";
-import { consLogged } from "../const/consLogged";
+import { consLogged } from "../const/consLogged.js";
 
 export const PublicRoute = ({ children }) => {
   const { logged } = useSelector((state) => state.userReducer);

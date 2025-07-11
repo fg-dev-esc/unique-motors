@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logOut } from '../../redux/features/auth/userSlice';
-import { consLogged } from '../../const/consLogged';
+import { consLogged } from '../../const/consLogged.js';
 import headerData from './headerData.json';
 
 export const useHeader = () => {

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { consLogged } from "../const/consLogged";
+import { consLogged } from "../const/consLogged.js";
 import { Layout } from "../layout/Layout/Layout";
 import Home from "../views/home/Home";
 import About from "../views/about/About";
