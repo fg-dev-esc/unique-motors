@@ -1,8 +1,8 @@
 import { AppRouter } from './router/AppRouter';
 
 function App() {
-  // Testing dev deployment environment - Build v2
-  console.log('🚀 App running in dev environment - Build v2');
+  // Dev environment ready! 
+  console.log('✅ Unique Motors - Dev Environment Ready!');
   return <AppRouter />;
 }
 
