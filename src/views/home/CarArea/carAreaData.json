@@ -1,0 +1,36 @@
+{
+  "sectionTitle": {
+    "tagline": "Autos",
+    "title": "Vehículos",
+    "titleSpan": "Destacados"
+  },
+  "searchPlaceholder": "Buscar",
+  "sortOptions": [
+    { "value": "1", "label": "Ordenar por Defecto" },
+    { "value": "5", "label": "Ordenar por Destacados" },
+    { "value": "2", "label": "Ordenar por Más Recientes" },
+    { "value": "3", "label": "Ordenar por Precio Bajo" },
+    { "value": "4", "label": "Ordenar por Precio Alto" }
+  ],
+  "labels": {
+    "model": "Modelo",
+    "people": "plazas",
+    "perMonth": "Precio base",
+    "loadMore": "Cargar Más",
+    "rentNow": "Ver Más"
+  },
+  "messages": {
+    "loading": "Cargando autos...",
+    "noResults": "No se encontraron autos."
+  },
+  "defaults": {
+    "image": "/assets/img/car/01.jpg",
+    "capacity": "4",
+    "fuel": "Gasolina",
+    "efficiency": "Sin datos",
+    "transmission": "Manual",
+    "price": "",
+    "likes": "12",
+    "priceNotAvailable": "Precio no disponible"
+  }
+}
