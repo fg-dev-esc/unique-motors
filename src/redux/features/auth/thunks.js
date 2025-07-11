@@ -9,8 +9,9 @@ import {
   setResponseReg,
 } from "./userSlice";
 import { parseJwt, setTokenToStorage, removeTokenFromStorage } from "../../../utils/jwtHelper";
-import { consLogged } from "../../../const/consLogged.js";
 import { setModalLogin } from "../../shared/modalSlice";
+
+import { consLogged } from "../../../constants/auth.js";
 
 
 export const startLogin = (body) => {
