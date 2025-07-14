@@ -18,7 +18,10 @@
       "Bash(sed:*)",
       "Bash(npm run lint)",
       "Bash(curl:*)",
-      "WebFetch(domain:www.subastasegura.com)"
+      "WebFetch(domain:www.subastasegura.com)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git config:*)"
     ],
     "deny": []
   }
