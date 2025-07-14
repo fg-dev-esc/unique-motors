@@ -2,8 +2,210 @@
 
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![Arquitectura](https://img.shields.io/badge/Arquitectura-Basada%20en%20Features-blue?style=for-the-badge)
-![Estado](https://img.shields.io/badge/Estado-Producción-green?style=for-the-badge)
+![Estado](https://img.shields.io/badge/Estado-Desarrollo-orange?style=for-the-badge)
 ![Mantenibilidad](https://img.shields.io/badge/Mantenibilidad-Alta-brightgreen?style=for-the-badge)
+
+## 📋 Registro de Desarrollo Cronológico
+
+### **Fase 1: Configuración Inicial del Proyecto**
+#### **[config] Inicialización del Proyecto**
+- **Fecha**: Diciembre 2024
+- **Cambios realizados**:
+  - Configuración inicial de React + Vite
+  - Setup de dependencias principales
+  - Estructura de carpetas base
+- **Archivos modificados**:
+  - `package.json` - Dependencias del proyecto
+  - `vite.config.js` - Configuración de Vite
+  - `index.html` - Archivo HTML principal
+- **Impacto**: Establece la base técnica del proyecto
+- **¿Por qué?**: Necesario para comenzar el desarrollo con herramientas modernas
+
+---
+
+### **Fase 2: Arquitectura y Estructura de Componentes**
+#### **[feat] Sistema de Views y Componentes**
+- **Fecha**: Diciembre 2024 - Enero 2025
+- **Cambios realizados**:
+  - Implementación del patrón Feature-Based Architecture
+  - Creación de 7 views principales
+  - Hook personalizado por feature
+  - Separación de datos en archivos JSON
+- **Archivos modificados**:
+  - `src/views/` - Estructura completa de views
+  - Patrón: `Feature.jsx` + `featureData.json` + `useFeature.js`
+- **Impacto**: Arquitectura escalable y mantenible
+- **¿Por qué?**: Organización clara y reutilización de código
+
+#### **[style] Implementación de Estilos Base**
+- **Fecha**: Enero 2025
+- **Cambios realizados**:
+  - Integración de Bootstrap 5
+  - Estilos CSS personalizados
+  - Componentes de UI responsivos
+- **Archivos modificados**:
+  - `public/assets/css/` - Archivos CSS
+  - `src/index.css` - Estilos globales
+- **Impacto**: Interfaz visual coherente y profesional
+- **¿Por qué?**: Necesario para una experiencia de usuario óptima
+
+---
+
+### **Fase 3: Funcionalidades Core**
+#### **[feat] Funcionalidad 1: Sistema de Autenticación**
+- **Fecha**: Enero 2025
+- **Cambios realizados**:
+  - Login y registro de usuarios
+  - Integración con Firebase Auth
+  - Manejo de estados de usuario
+- **Archivos modificados**:
+  - `src/views/auth/` - Componentes de autenticación
+  - `src/services/authService.js` - Servicio de autenticación
+  - `src/redux/features/auth/` - Redux slices
+- **Impacto**: Sistema de usuarios funcional
+- **¿Por qué?**: Requerido para acceso a funcionalidades protegidas
+
+#### **[feat] Funcionalidad 2: Homepage y Visualización de Vehículos**
+- **Fecha**: Enero 2025
+- **Cambios realizados**:
+  - Hero section con carousel
+  - Grid de vehículos
+  - Filtros de búsqueda
+- **Archivos modificados**:
+  - `src/views/home/` - Componentes de homepage
+  - `src/components/search/` - Componentes de búsqueda
+  - `src/redux/features/home/` - Estado de homepage
+- **Impacto**: Punto de entrada atractivo y funcional
+- **¿Por qué?**: Primera impresión para usuarios y navegación de inventario
+
+#### **[feat] Funcionalidad 3: Detalle de Vehículos y Sistema de Pujas**
+- **Fecha**: Enero 2025
+- **Cambios realizados**:
+  - Página de detalle completa
+  - Sistema de pujas en tiempo real
+  - Galería de imágenes
+  - Historial de ofertas
+- **Archivos modificados**:
+  - `src/views/detail/` - Componentes de detalle
+  - `src/components/auction/` - Componentes de subasta
+  - `src/redux/features/auction/` - Estado de subastas
+- **Impacto**: Funcionalidad core de subasta
+- **¿Por qué?**: Elemento central del modelo de negocio
+
+#### **[feat] Funcionalidad 4: Perfil de Usuario**
+- **Fecha**: Enero 2025
+- **Cambios realizados**:
+  - Dashboard de usuario
+  - Gestión de favoritos
+  - Historial de transacciones
+  - Configuración de perfil
+- **Archivos modificados**:
+  - `src/views/profile/` - Componentes de perfil
+  - `src/components/` - Componentes auxiliares
+  - `src/redux/features/profile/` - Estado de perfil
+- **Impacto**: Experiencia personalizada para usuarios
+- **¿Por qué?**: Gestión de datos personales y actividad
+
+#### **[feat] Funcionalidad 5: Sistema de Venta**
+- **Fecha**: Febrero 2025
+- **Cambios realizados**:
+  - Formulario multi-paso
+  - Carga de imágenes
+  - Validación de datos
+- **Archivos modificados**:
+  - `src/views/sell/` - Componentes de venta
+  - `src/components/upload/` - Componentes de carga
+  - `src/redux/features/sell/` - Estado de venta
+- **Impacto**: Permite a usuarios vender vehículos
+- **¿Por qué?**: Lado vendedor del marketplace
+
+#### **[feat] Funcionalidad 6: Sistema de Contacto**
+- **Fecha**: Febrero 2025
+- **Cambios realizados**:
+  - Formulario de contacto
+  - Mapa de ubicación
+  - Información de contacto
+- **Archivos modificados**:
+  - `src/views/contact/` - Componentes de contacto
+  - `src/services/` - Servicios de envío
+- **Impacto**: Canal de comunicación con usuarios
+- **¿Por qué?**: Soporte y atención al cliente
+
+#### **[feat] Funcionalidad 7: Página About**
+- **Fecha**: Febrero 2025
+- **Cambios realizados**:
+  - Información corporativa
+  - Sección de servicios
+  - FAQ y partners
+- **Archivos modificados**:
+  - `src/views/about/` - Componentes informativos
+- **Impacto**: Información corporativa y confianza
+- **¿Por qué?**: Credibilidad y transparencia
+
+---
+
+### **Fase 4: Optimizaciones y Mejoras**
+#### **[refactor] Extracción de Textos Hardcodeados**
+- **Fecha**: Julio 2025
+- **Cambios realizados**:
+  - Migración de textos a archivos JSON
+  - Preparación para internacionalización
+  - Mantenibilidad mejorada
+- **Archivos modificados**:
+  - 7 archivos JSX modificados
+  - 7 archivos JSON de datos actualizados
+- **Impacto**: Código más limpio y escalable
+- **¿Por qué?**: Facilita mantenimiento y futuras traducciones
+
+#### **[style] Sistema de Paletas de Colores**
+- **Fecha**: Julio 2025
+- **Cambios realizados**:
+  - Sistema de temas dinámicos
+  - Variables CSS centralizadas
+  - Controlador JavaScript para cambio de temas
+- **Archivos modificados**:
+  - `public/assets/css/color-palettes.css` - Nuevo archivo
+  - `public/assets/css/theme-controller.js` - Nuevo archivo
+  - `index.html` - Integración de archivos
+- **Impacto**: Personalización visual y consistencia
+- **¿Por qué?**: Mejora la experiencia de usuario y branding
+
+#### **[config] Configuración de Herramientas**
+- **Fecha**: Julio 2025
+- **Cambios realizados**:
+  - Configuración de ESLint
+  - Setup de Vercel para deploy
+  - Configuración de Git
+- **Archivos modificados**:
+  - `eslint.config.js` - Reglas de linting
+  - `vercel.json` - Configuración de deploy
+  - `.gitignore` - Archivos excluidos
+- **Impacto**: Calidad de código y deploy automatizado
+- **¿Por qué?**: Mejores prácticas de desarrollo y CI/CD
+
+---
+
+### **Próximos Pasos en Desarrollo**
+
+#### **[feat] Funcionalidad 8: Sistema de Pagos**
+- **Pendiente**: Integración con pasarelas de pago
+- **Archivos a modificar**: `src/components/payment/`
+- **Impacto**: Completar flujo de transacciones
+
+#### **[feat] Funcionalidad 9: Sistema de Notificaciones**
+- **Pendiente**: Notificaciones push y email
+- **Archivos a modificar**: `src/services/notifications/`
+- **Impacto**: Comunicación proactiva con usuarios
+
+#### **[refactor] Optimización de Performance**
+- **Pendiente**: Lazy loading y code splitting
+- **Archivos a modificar**: Router y components
+- **Impacto**: Mejor rendimiento de la aplicación
+
+#### **[chore] Testing y Documentación**
+- **Pendiente**: Tests unitarios y documentación técnica
+- **Archivos a modificar**: `__tests__/` y `docs/`
+- **Impacto**: Calidad y mantenibilidad del código
 
 ## Estructura de Directorios
 

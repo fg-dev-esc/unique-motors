@@ -1,5 +1,38 @@
 # Campos de la API - Subasta30 Backend
 
+**Fecha:** Enero 2025  
+**Tipo de Cambio:** `[feat]` - Definición de estructura de datos y endpoints
+**Prioridad:** Crítica - Base para todas las funcionalidades
+**Fase:** 2 - Arquitectura y Estructura de Componentes
+
+## 🎯 Contexto del Proyecto
+
+Esta documentación define la estructura de datos y endpoints del backend que alimenta el proyecto Unique Motors. Es la base sobre la cual se construyen todas las funcionalidades del frontend.
+
+### Flujo de Desarrollo
+1. **[config] Configuración Inicial** ✅ Completado
+2. **[feat] Definición de API** ✅ Actual
+3. **[feat] Implementación de Views** ⏳ Siguiente
+
+## 📊 Métricas de Impacto
+
+### Endpoints Documentados
+- **Total endpoints**: 25+ endpoints
+- **Categorías principales**: 8 categorías
+- **Interfaces definidas**: 15+ interfaces TypeScript
+- **Tiempo documentación**: 3 horas
+- **Complejidad**: Alta
+
+### Funcionalidades Cubiertas
+- ✅ Autenticación y usuarios
+- ✅ Gestión de artículos/vehículos
+- ✅ Sistema de subastas y pujas
+- ✅ Compradores y vendedores
+- ✅ Categorías dinámicas
+- ✅ Pagos y garantías
+- ✅ Documentos y archivos
+- ✅ Datos geográficos
+
 ## Estructura Principal de Datos
 
 ### **Artículos (Productos para Subasta)**
@@ -286,3 +319,76 @@ FormData {
 - Formatos de email
 - Rangos de días (0-365)
 - Tipos de persona (física/moral)
+
+## 🔄 Siguientes Pasos en el Flujo de Desarrollo
+
+### Inmediatos (Fase 3 - Funcionalidades Core)
+1. **[feat] Implementación de Servicios API**
+   - Archivos: `src/services/apiService.js`, `src/api/api.js`
+   - Impacto: Conexión con backend funcional
+   - Tiempo estimado: 4 horas
+
+2. **[feat] Integración con Redux**
+   - Archivos: `src/redux/features/`
+   - Impacto: Manejo de estado global
+   - Tiempo estimado: 6 horas
+
+### Funcionalidades Principales (Fase 3)
+1. **[feat] Sistema de Autenticación**
+   - Dependencias: API de login y registro
+   - Tiempo estimado: 8 horas
+
+2. **[feat] Gestión de Artículos**
+   - Dependencias: API de artículos y categorías
+   - Tiempo estimado: 12 horas
+
+3. **[feat] Sistema de Subastas**
+   - Dependencias: API de subastas y pujas
+   - Tiempo estimado: 16 horas
+
+### Optimizaciones (Fase 4)
+1. **[refactor] Optimización de Queries**
+   - Archivos: Servicios API
+   - Impacto: Mejor rendimiento
+   - Tiempo estimado: 4 horas
+
+---
+
+### 📋 Commits Recomendados para API
+
+```bash
+# Commit 1: Documentar estructura de datos
+git add md/api.md
+git commit -m "[feat] documentar estructura de datos de API backend
+
+- Definir interfaces TypeScript para todos los DTOs
+- Documentar endpoints principales por funcionalidad
+- Establecer validaciones y restricciones
+- Crear guía de referencia para desarrollo frontend
+
+Establece base técnica para integración con backend"
+
+# Commit 2: Implementar servicios API
+git add src/services/ src/api/
+git commit -m "[feat] implementar servicios de conexión con API
+
+- Crear servicio base para HTTP requests
+- Implementar servicios específicos por funcionalidad
+- Configurar interceptores para autenticación
+- Establecer manejo de errores centralizado
+
+Conecta frontend con backend Subasta30"
+
+# Commit 3: Integrar con Redux
+git add src/redux/
+git commit -m "[feat] integrar servicios API con Redux store
+
+- Crear thunks para operaciones asíncronas
+- Implementar reducers para manejo de estado
+- Configurar middleware para API calls
+- Establecer patrones de loading y error
+
+Completa integración de estado global con backend"
+```
+
+Esta documentación de API es fundamental para el desarrollo de todas las funcionalidades del frontend, proporcionando la base técnica necesaria para las siguientes fases del proyecto.
