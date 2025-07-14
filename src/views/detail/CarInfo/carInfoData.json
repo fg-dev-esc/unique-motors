@@ -1,0 +1,70 @@
+{
+  "meta": {
+    "title": "Información del Vehículo",
+    "description": "Detalles y especificaciones del vehículo"
+  },
+  "carDetailsFields": [
+    {
+      "field": "modelo",
+      "label": "Modelo",
+      "icon": "car"
+    },
+    {
+      "field": "anio",
+      "label": "Año",
+      "icon": "calendar"
+    },
+    {
+      "field": "kilometraje",
+      "label": "Kilometraje",
+      "icon": "speedometer",
+      "suffix": " km"
+    },
+    {
+      "field": "combustible",
+      "label": "Combustible",
+      "icon": "fuel"
+    },
+    {
+      "field": "transmision",
+      "label": "Transmisión",
+      "icon": "gear"
+    },
+    {
+      "field": "motor",
+      "label": "Motor",
+      "icon": "engine"
+    }
+  ],
+  "carTermsFields": [
+    {
+      "field": "precioReserva",
+      "label": "Precio de Reserva",
+      "format": "currency"
+    },
+    {
+      "field": "incrementoMinimo",
+      "label": "Incremento Mínimo",
+      "format": "currency"
+    },
+    {
+      "field": "comision",
+      "label": "Comisión",
+      "format": "currency"
+    }
+  ],
+  "labels": {
+    "customerReviews": "Reseñas de clientes",
+    "activeAuction": "Subasta activa",
+    "auctionEnded": "Subasta terminada",
+    "currentBid": "Oferta actual",
+    "bidNow": "Ofertar ahora",
+    "carDetails": "Detalles del vehículo",
+    "auctionTerms": "Términos de la subasta",
+    "loginToParticipate": "Inicia sesión para participar",
+    "loginMessage": "Debes iniciar sesión para realizar pujas",
+    "loginButton": "Iniciar sesión",
+    "registerButton": "Registrarse",
+    "makeOffer": "Realizar Oferta"
+  }
+}

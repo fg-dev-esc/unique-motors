@@ -1,0 +1,54 @@
+{
+  "meta": {
+    "title": "Información Detallada",
+    "description": "Tabs con información detallada del vehículo"
+  },
+  "tabs": {
+    "description": "Descripción",
+    "additionalInfo": "Información adicional",
+    "bidHistory": "Historial de pujas",
+    "comments": "Comentarios"
+  },
+  "config": {
+    "defaultTab": "description",
+    "animationDuration": 300
+  },
+  "content": {
+    "descriptionText": "Este vehículo se encuentra en excelente estado y cuenta con todas las características necesarias para satisfacer las necesidades de transporte más exigentes. Ha sido mantenido regularmente y está listo para su nuevo propietario."
+  },
+  "labels": {
+    "loginButton": "Iniciar sesión",
+    "registerButton": "Registrarse",
+    "bidAmount": "Monto de puja",
+    "placeBid": "Realizar puja"
+  },
+  "placeholders": {
+    "yourName": "Tu nombre",
+    "yourEmail": "Tu email",
+    "comment": "Escribe tu comentario aquí..."
+  },
+  "sections": {
+    "vehicleSpecs": "Especificaciones del vehículo",
+    "technicalFeatures": "Características técnicas",
+    "vehicleDescription": "Descripción del vehículo",
+    "additionalInfo": "Información adicional",
+    "observations": "Observaciones",
+    "maintenanceHistory": "Historial de mantenimiento",
+    "saleConditions": "Condiciones de venta",
+    "warranty": "Garantía"
+  },
+  "messages": {
+    "noInfoAvailable": "No hay información adicional disponible para este vehículo.",
+    "commentsTitle": "Comentarios (05)",
+    "leaveComment": "Dejar un Comentario",
+    "loginRequired": "Inicia sesión para comentar",
+    "loginMessage": "Para dejar comentarios necesitas tener una cuenta activa",
+    "replyButton": "Responder",
+    "sendCommentButton": "Enviar Comentario"
+  },
+  "sampleComments": [
+    "Excelente vehículo, se ve en muy buen estado. Las fotografías muestran claramente el cuidado que ha tenido. Definitivamente consideraré participar en esta subasta.",
+    "¿Podrían proporcionar más detalles sobre el historial de mantenimiento? Me interesa mucho este modelo y quiero asegurarme de que esté en óptimas condiciones.",
+    "Muy buena opción para la familia. El precio base parece justo considerando las características del vehículo. Estaré pendiente de la subasta."
+  ]
+}
