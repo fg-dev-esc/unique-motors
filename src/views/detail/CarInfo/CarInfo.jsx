@@ -93,8 +93,8 @@ const CarInfo = ({ hasDeposit = false }) => {
               </div>
             </div>
           )}
-          {/* Spacer to push content to bottom */}
-          <div className="flex-grow-1"></div>
+          {/* Reduced spacer for alignment */}
+          <div style={{ flex: '1.5' }}></div>
           
           {/* Bidding Interface - Only show if user is logged in */}
           {isAuthenticated && isActive && (

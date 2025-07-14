@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { useCarTabs } from './useCarTabs';
 import BiddingHistory from '../BiddingHistory/BiddingHistory';
+import CarComments from '../CarComments/CarComments';
 const CarTabs = () => {
   const {
     data,
@@ -71,7 +72,7 @@ const CarTabs = () => {
               aria-selected={activeTab === 'reviews'}
             >
               <i className="fas fa-comments me-2"></i>
-              {data.tabs.comments} (05)
+              {data.tabs.comments} (03)
             </button>
           </div>
         </nav>
@@ -186,83 +187,7 @@ const CarTabs = () => {
           {/* Comments Tab */}
           {activeTab === 'reviews' && (
             <div className="tab-pane fade show active" id="tab4" role="tabpanel" aria-labelledby="nav-tab4">
-              <div className="car-single-review">
-                <div className="blog-comments">
-                  <h3>{data.messages.commentsTitle}</h3>
-                  
-                  <div className="blog-comments-wrapper">
-                    <div className="blog-comments-single">
-                      <img src="/assets/img/blog/com-1.jpg" alt="thumb" />
-                      <div className="blog-comments-content">
-                        <h5>Carlos Mendoza</h5>
-                        <span><i className="far fa-clock"></i> 17 Marzo, 2024</span>
-                        <p>{data.sampleComments[0]}</p>
-                        <a href="#"><i className="far fa-reply"></i> {data.messages.replyButton}</a>
-                      </div>
-                    </div>
-                    
-                    <div className="blog-comments-single">
-                      <img src="/assets/img/blog/com-2.jpg" alt="thumb" />
-                      <div className="blog-comments-content">
-                        <h5>Maria Rodriguez</h5>
-                        <span><i className="far fa-clock"></i> 16 Marzo, 2024</span>
-                        <p>{data.sampleComments[1]}</p>
-                        <a href="#"><i className="far fa-reply"></i> {data.messages.replyButton}</a>
-                      </div>
-                    </div>
-                    
-                    <div className="blog-comments-single">
-                      <img src="/assets/img/blog/com-3.jpg" alt="thumb" />
-                      <div className="blog-comments-content">
-                        <h5>Jose García</h5>
-                        <span><i className="far fa-clock"></i> 15 Marzo, 2024</span>
-                        <p>{data.sampleComments[2]}</p>
-                        <a href="#"><i className="far fa-reply"></i> {data.messages.replyButton}</a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="blog-comments-form">
-                    <h3>{data.messages.leaveComment}</h3>
-                    {!isAuthenticated ? (
-                      <div className="alert alert-info text-center">
-                        <i className="fas fa-info-circle fs-2 mb-3"></i>
-                        <h5>{data.messages.loginRequired}</h5>
-                        <p className="mb-3">{data.messages.loginMessage}</p>
-                        <Link to="/login" className="theme-btn me-2">
-                          <i className="fas fa-sign-in-alt"></i> {data.labels.loginButton}
-                        </Link>
-                        <Link to="/register" className="theme-btn theme-btn-outline">
-                          <i className="fas fa-user-plus"></i> {data.labels.registerButton}
-                        </Link>
-                      </div>
-                    ) : (
-                      <form>
-                        <div className="row">
-                          <div className="col-md-6">
-                            <div className="form-group">
-                              <input type="text" className="form-control" placeholder={data.placeholders.yourName} />
-                            </div>
-                          </div>
-                          <div className="col-md-6">
-                            <div className="form-group">
-                              <input type="email" className="form-control" placeholder={data.placeholders.yourEmail} />
-                            </div>
-                          </div>
-                          <div className="col-md-12">
-                            <div className="form-group">
-                              <textarea className="form-control" rows="5" placeholder={data.placeholders.comment} />
-                            </div>
-                            <button type="submit" className="theme-btn">
-                              <i className="far fa-paper-plane"></i> {data.messages.sendCommentButton}
-                            </button>
-                          </div>
-                        </div>
-                      </form>
-                    )}
-                  </div>
-                </div>
-              </div>
+              <CarComments />
             </div>
           )}
           

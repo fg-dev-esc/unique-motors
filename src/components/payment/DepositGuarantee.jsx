@@ -11,15 +11,6 @@ const DepositGuarantee = ({ onDepositComplete }) => {
 
   return (
     <div className="deposit-guarantee-container">
-      <div className="alert alert-info mb-4">
-        <div className="d-flex align-items-center">
-          <i className="fas fa-shield-alt me-3 text-primary fs-4"></i>
-          <div>
-            <h5 className="mb-1">Subasta Segura</h5>
-            <p className="mb-0">Para participar en las pujas, necesitas realizar un depósito de garantía.</p>
-          </div>
-        </div>
-      </div>
 
       <div className="accordion" id="depositAccordion">
         <div className="accordion-item">

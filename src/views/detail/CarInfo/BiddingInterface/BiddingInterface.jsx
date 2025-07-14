@@ -140,7 +140,7 @@ const BiddingInterface = ({ car, isActive, hasDeposit: propHasDeposit = false })
   if (needsDeposit) {
     return (
       <div className="bidding-interface">
-        <div className="alert alert-info text-center">
+        <div className="alert alert-warning text-center">
           <i className="fas fa-shield-alt me-2"></i>
           Necesitas realizar el depósito de garantía para participar en la subasta
         </div>

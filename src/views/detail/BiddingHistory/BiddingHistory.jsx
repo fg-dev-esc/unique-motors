@@ -211,7 +211,7 @@ const BiddingHistory = ({ carPrice, isActive = true, car = null }) => {
         )}
 
         {/* Sección de Información Adicional */}
-        <div className="additional-info-section">
+        {/* <div className="additional-info-section">
           <div 
             className="additional-info-header"
             onClick={() => setShowAdditionalInfo(!showAdditionalInfo)}
@@ -250,7 +250,7 @@ const BiddingHistory = ({ carPrice, isActive = true, car = null }) => {
               </div>
             </div>
           )}
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -1,19 +1,22 @@
 import React from 'react';
-import { useCarComments } from './useCarComments';
+import { useSelector } from 'react-redux';
+import { useCarComments } from './useCarComments.jsx';
 import carCommentsData from './carCommentsData.json';
 
 const CarComments = () => {
+  const { car } = useSelector(state => state.auctionReducer);
   const {
     comments,
     newComment,
     hoverRating,
+    loading,
     handleRatingClick,
     handleRatingHover,
     handleSubmitComment,
     renderStars,
     renderRatingInput,
     handleInputChange
-  } = useCarComments();
+  } = useCarComments(car?.articuloID);
 
   const { labels } = carCommentsData;
 
@@ -21,6 +24,14 @@ const CarComments = () => {
     <div className="car-single-review">
       <div className="blog-comments">
         <h3>{labels.comments} ({comments.length})</h3>
+        {loading && (
+          <div className="text-center my-3">
+            <div className="loader-ripple">
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        )}
         <div className="blog-comments-wrapper">
           {comments.map((comment) => (
             <div key={comment.id} className="blog-comments-single">
@@ -87,8 +98,16 @@ const CarComments = () => {
                     required
                   />
                 </div>
-                <button type="submit" className="theme-btn">
-                  <i className="far fa-paper-plane"></i> {labels.submitComment}
+                <button type="submit" className="theme-btn" disabled={loading}>
+                  {loading ? (
+                    <div className="loader-ripple me-2" style={{ transform: 'scale(0.3)' }}>
+                      <div></div>
+                      <div></div>
+                    </div>
+                  ) : (
+                    <i className="far fa-paper-plane"></i>
+                  )}
+                  {labels.submitComment}
                 </button>
               </div>
             </div>

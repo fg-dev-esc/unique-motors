@@ -75,7 +75,7 @@ const DetailSection = () => {
       )}
       
       <CarTabs />
-      <RelatedCars />
+      {/* <RelatedCars /> */}
     </>
   );
 };
