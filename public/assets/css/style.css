@@ -4033,6 +4033,11 @@ car single css
 @media all and (max-width: 991px) {
   .car-single-slider-box {
     margin-bottom: 40px;
+    min-height: 600px;
+  }
+  .car-single-slider-box {
+    margin-bottom: 40px;
+    min-height: 900px !important;  /* ← Agregar esta línea */
   }
 }
 

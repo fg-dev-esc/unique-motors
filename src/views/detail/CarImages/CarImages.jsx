@@ -55,7 +55,7 @@ const CarImages = () => {
                   alt={img.nombre}
                   style={{
                     width: '100%',
-                    height: '400px',
+                    height: '600px',
                     objectFit: 'cover'
                   }}
                 />
@@ -75,7 +75,7 @@ const CarImages = () => {
                       alt={img.nombre}
                       style={{
                         width: '100%',
-                        height: '80px',
+                        height: '100px',
                         objectFit: 'cover',
                         borderRadius: '8px',
                         cursor: 'pointer',
