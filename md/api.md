@@ -303,20 +303,6 @@ FormData {
 }
 ```
 
-## Para Claude Code
-
-**Campos más importantes para implementar:**
-
-1. **Sistema de artículos**: nombre, descripción, montoSalida, subcategoriaID, municipioID, camposValor
-2. **Sistema de usuarios**: email, password, roles
-3. **Sistema de pujas**: torreID, monto
-4. **Sistema de compradores**: datos fiscales completos
-5. **Categorías dinámicas**: campos configurables por subcategoría
-
-**Validaciones clave:**
-- Montos mínimos (0.01)
-- Longitudes máximas de strings
-- Formatos de email
 - Rangos de días (0-365)
 - Tipos de persona (física/moral)
 

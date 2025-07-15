@@ -46,7 +46,9 @@ export const startGetSubastaTorre = (id) => {
 export const startPuja = (body) => {
   return async (dispatch) => {
     try {
+      console.log('📤 startPuja sending:', body);
       const res = await fetch('post', `${_URL_DEV}/Pujas/Pujar`, body);
+      console.log('📥 startPuja response:', res);
       if (res.ok) {
         dispatch(setPujaMartillo(res.data));
       }

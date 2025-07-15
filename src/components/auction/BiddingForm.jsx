@@ -34,14 +34,21 @@ export const BiddingForm = () => {
   };
 
   const handleClick = () => {
+    console.log('🟢 BiddingForm handleClick ejecutado!');
+    console.log('🟢 Form data:', form);
+    console.log('🟢 subastaTorre:', subastaTorre);
+    
     if (!MultiploMil(form.monto)) {
+      console.log('❌ Error: no es múltiplo de 1000');
       setErr('La oferta debe ser múltiplo de $1,000');
       return;
     }
     if (!form.monto || form.monto <= 0) {
+      console.log('❌ Error: monto inválido');
       setErr('La oferta debe ser mayor a 0');
       return;
     }
+    console.log('✅ Enviando puja:', form);
     dispatch(startPuja(form));
     setErr('');
     setMonto('');

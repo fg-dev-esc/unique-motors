@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { startPuja } from '../../../../redux/features/auction/thunks';
 import { useBiddingInterface } from './useBiddingInterface';
 import DepositGuarantee from '../../../../components/payment/DepositGuarantee';
 
-const BiddingInterface = ({ car, isActive, hasDeposit: propHasDeposit = false }) => {
+const BiddingInterface = ({ car, isActive, hasDeposit: propHasDeposit = false, currentPrice = 0 }) => {
   const dispatch = useDispatch();
-  const [customBid, setCustomBid] = useState('');
+  const { subastaTorre } = useSelector(state => state.auctionReducer);
+  
+  // Calculate minimum bid upfront - usar precio actual mostrado en pantalla
+  const currentBid = currentPrice;
+  const minimumBid = currentBid + 10000;
+  
+  const [bidAmount, setBidAmount] = useState(minimumBid); // Oferta acumulada
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [hasDeposit, setHasDeposit] = useState(propHasDeposit); // Estado del depósito
@@ -20,10 +27,6 @@ const BiddingInterface = ({ car, isActive, hasDeposit: propHasDeposit = false })
   
   // Redux state
   const { user } = useSelector(state => state.userReducer);
-  const { pujaMayor } = useSelector(state => state.auctionReducer);
-  
-  // Get current highest bid or starting price
-  const currentBid = pujaMayor?.monto || car.precio || 0;
   
   // Format currency
   const formatCurrency = (amount) => {
@@ -41,37 +44,37 @@ const BiddingInterface = ({ car, isActive, hasDeposit: propHasDeposit = false })
     console.log('Deposit completed:', paymentData);
   };
 
-  // Handle quick bid buttons
-  const handleQuickBid = async (increment) => {
+  // Handle add increment buttons  
+  const handleAddIncrement = (increment) => {
     if (!isActive) return;
     
-    const newBid = currentBid + increment;
-    await submitBid(newBid);
+    setBidAmount(bidAmount + increment);
+    setError('');
   };
   
-  // Handle custom bid
-  const handleCustomBid = async () => {
+  // Handle submit final bid
+  const handleSubmitBid = async () => {
     if (!isActive) return;
     
-    const bidAmount = parseInt(customBid);
+    const finalBidAmount = parseInt(bidAmount);
     
     // Validation
-    if (!bidAmount || bidAmount <= 0) {
+    if (!finalBidAmount || finalBidAmount <= 0) {
       setError(data.validation.invalidAmount);
       return;
     }
     
-    if (bidAmount % 1000 !== 0) {
+    if (finalBidAmount % 1000 !== 0) {
       setError(data.validation.invalidMultiple);
       return;
     }
     
-    if (bidAmount <= currentBid) {
-      setError(data.validation.belowCurrent.replace('{currentBid}', formatCurrency(currentBid)));
+    if (finalBidAmount < minimumBid) {
+      setError(data.validation.belowCurrent.replace('{currentBid}', formatCurrency(minimumBid)));
       return;
     }
     
-    await submitBid(bidAmount);
+    await submitBid(finalBidAmount);
   };
   
   // Submit bid to API
@@ -84,40 +87,47 @@ const BiddingInterface = ({ car, isActive, hasDeposit: propHasDeposit = false })
     setIsLoading(true);
     setError('');
     
-    try {
-      const bidData = {
-        monto: amount,
-        torreID: car.articuloID,
-        usuarioPujaID: user.usuarioID,
-        fecha: new Date().toISOString()
-      };
-      
-      // TODO: Dispatch action to submit bid
-      // dispatch(submitBid(bidData));
-      
-      console.log('Bid submitted:', bidData);
-      
-      // Clear custom bid input
-      setCustomBid('');
-      
-    } catch (error) {
-      setError(data.validation.submitError);
-      console.error('Bid submission error:', error);
-    } finally {
-      setIsLoading(false);
-    }
+    // Get correct torreID from URL
+    const urlTorreID = window.location.pathname.split('/').pop();
+    
+    const bidData = {
+      monto: amount,
+      torreID: subastaTorre?.torreID || urlTorreID,
+      usuarioPujaID: user.usuarioID,
+      fecha: new Date().toISOString()
+    };
+    
+    // Debug data before sending
+    console.log('🔍 BiddingInterface Debug:', {
+      subastaTorre,
+      bidData,
+      car: {
+        articuloID: car?.articuloID,
+        precio: car?.precio
+      },
+      urlParam: window.location.pathname.split('/').pop(),
+      torreIDSource: subastaTorre?.torreID ? 'subastaTorre' : 'car.articuloID'
+    });
+    
+    // Dispatch the same way as BiddingForm
+    dispatch(startPuja(bidData));
+    
+    // Clear form like BiddingForm does
+    setError('');
+    setBidAmount(minimumBid);
+    setIsLoading(false);
   };
   
   // Handle input change
   const handleInputChange = (e) => {
-    setCustomBid(e.target.value);
+    setBidAmount(parseInt(e.target.value) || minimumBid);
     setError('');
   };
   
   // Handle Enter key press
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
-      handleCustomBid();
+      handleSubmitBid();
     }
   };
   
@@ -152,8 +162,10 @@ const BiddingInterface = ({ car, isActive, hasDeposit: propHasDeposit = false })
     <div className="bidding-interface">
       <div className="current-bid-info mb-3">
         <div className="d-flex justify-content-between align-items-center">
-          <span className="text-muted">{data.ui.currentBidLabel}:</span>
-          <span className="fw-bold text-primary fs-5">{formatCurrency(currentBid)}</span>
+          <span className="text-muted">Tu oferta actual:</span>
+          <span className="fw-bold text-success fs-5">
+            {formatCurrency(bidAmount)}
+          </span>
         </div>
       </div>
       
@@ -164,7 +176,7 @@ const BiddingInterface = ({ car, isActive, hasDeposit: propHasDeposit = false })
             <button
               type="button"
               className="btn btn-outline-primary btn-sm w-100"
-              onClick={() => handleQuickBid(10000)}
+              onClick={() => handleAddIncrement(10000)}
               disabled={isLoading}
               title={data.tooltips.add10k}
             >
@@ -176,7 +188,7 @@ const BiddingInterface = ({ car, isActive, hasDeposit: propHasDeposit = false })
             <button
               type="button"
               className="btn btn-outline-primary btn-sm w-100"
-              onClick={() => handleQuickBid(50000)}
+              onClick={() => handleAddIncrement(50000)}
               disabled={isLoading}
               title={data.tooltips.add50k}
             >
@@ -188,7 +200,7 @@ const BiddingInterface = ({ car, isActive, hasDeposit: propHasDeposit = false })
             <button
               type="button"
               className="btn btn-outline-primary btn-sm w-100"
-              onClick={() => handleQuickBid(100000)}
+              onClick={() => handleAddIncrement(100000)}
               disabled={isLoading}
               title={data.tooltips.add100k}
             >
@@ -209,10 +221,10 @@ const BiddingInterface = ({ car, isActive, hasDeposit: propHasDeposit = false })
                 type="number"
                 className="form-control"
                 placeholder={data.placeholders.customBid}
-                value={customBid}
+                value={bidAmount}
                 onChange={handleInputChange}
                 onKeyPress={handleKeyPress}
-                min={currentBid + 1000}
+                min={minimumBid}
                 step="1000"
                 disabled={isLoading}
               />
@@ -222,8 +234,8 @@ const BiddingInterface = ({ car, isActive, hasDeposit: propHasDeposit = false })
             <button
               type="button"
               className="btn btn-primary w-100"
-              onClick={handleCustomBid}
-              disabled={isLoading || !customBid}
+              onClick={handleSubmitBid}
+              disabled={isLoading || !bidAmount}
             >
               {isLoading ? (
                 <div className="loader-ripple me-1" style={{ transform: 'scale(0.3)' }}>

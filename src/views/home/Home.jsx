@@ -4,7 +4,6 @@ import HeroSection from './HeroSection/HeroSection';
 import { CarArea } from './CarArea/CarArea';
 
 const Home = () => {
-
   return (
     <>
       <HeroSection />

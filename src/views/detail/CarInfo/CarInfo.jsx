@@ -104,7 +104,12 @@ const CarInfo = ({ hasDeposit = false }) => {
                   <i className="fas fa-gavel me-2"></i>
                   {data.labels.makeOffer}
                 </h5>
-                <BiddingInterface car={car} isActive={isActive} hasDeposit={hasDeposit} />
+                <BiddingInterface 
+            car={car} 
+            isActive={isActive} 
+            hasDeposit={hasDeposit}
+            currentPrice={auctionDetails.currentBid || car.montoSalida || car.precio || 0}
+          />
               </div>
             </div>
           )}
