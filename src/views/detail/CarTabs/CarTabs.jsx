@@ -187,7 +187,7 @@ const CarTabs = () => {
           {/* Comments Tab */}
           {activeTab === 'reviews' && (
             <div className="tab-pane fade show active" id="tab4" role="tabpanel" aria-labelledby="nav-tab4">
-              <CarComments />
+              <CarComments car={car} />
             </div>
           )}
           

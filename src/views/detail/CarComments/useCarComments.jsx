@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
-import { API_ENDPOINTS } from '../../../constants/apiEndpoints';
-import { useSelector } from 'react-redux';
-
-const initialComments = [];
+import { useSelector, useDispatch } from 'react-redux';
+import { subscribeToAuction, addCommentToAuction } from '../../../utils/firebaseHelpers';
+import { startEnviarComentario } from '../../../redux/features/auction/thunks';
 
 export const useCarComments = (articuloID) => {
-  const [comments, setComments] = useState(initialComments);
+  const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(false);
   const [newComment, setNewComment] = useState({
     userName: '',
@@ -15,38 +14,34 @@ export const useCarComments = (articuloID) => {
   });
   const [hoverRating, setHoverRating] = useState(0);
   const { user } = useSelector(state => state.userReducer);
+  const { comentarios } = useSelector(state => state.auctionReducer);
+  const dispatch = useDispatch();
 
-  // Initialize with sample comments since API only has POST endpoint
+  // Load real comments from Firebase
   useEffect(() => {
-    // Load sample comments - API doesn't provide GET endpoint for existing comments
-    const sampleComments = [
-      {
-        id: 1,
-        userName: "María González",
+    if (!articuloID) return;
+
+    const unsubscribe = subscribeToAuction(articuloID, (auctionData) => {
+      const firebaseComments = auctionData.comentarios || [];
+      
+      // Transform Firebase comments to component format
+      const transformedComments = firebaseComments.map((comment, index) => ({
+        id: index + 1,
+        userName: comment.NickName || comment.Nickname || 'Usuario Anónimo',
         userImage: "assets/img/blog/com-1.jpg",
-        date: "15 Marzo, 2024",
-        rating: 5,
-        comment: "Excelente vehículo, muy bien cuidado. El proceso de puja fue muy transparente."
-      },
-      {
-        id: 2,
-        userName: "Carlos Mendoza",
-        userImage: "assets/img/blog/com-2.jpg",
-        date: "17 Marzo, 2024",
-        rating: 4,
-        comment: "Muy buen estado, las fotografías muestran claramente el cuidado que ha tenido."
-      },
-      {
-        id: 3,
-        userName: "Ana Patricia",
-        userImage: "assets/img/blog/com-3.jpg",
-        date: "18 Marzo, 2024",
-        rating: 5,
-        comment: "Me parece una excelente oportunidad de inversión. El vehículo se ve impecable."
-      }
-    ];
-    
-    setComments(sampleComments);
+        date: new Date(comment.Fecha).toLocaleDateString('es-ES', { 
+          day: 'numeric', 
+          month: 'long', 
+          year: 'numeric' 
+        }),
+        rating: comment.Rating || 5,
+        comment: comment.Comentario
+      }));
+      
+      setComments(transformedComments);
+    });
+
+    return () => unsubscribe();
   }, [articuloID]);
 
   const handleRatingClick = (rating) => {
@@ -59,72 +54,59 @@ export const useCarComments = (articuloID) => {
 
   const handleSubmitComment = async (e) => {
     e.preventDefault();
-    if (newComment.userName && newComment.userEmail && newComment.comment && newComment.rating > 0) {
-      setLoading(true);
+    
+    // Validate user authentication
+    if (!user?.email) {
+      alert('Inicia sesión antes de enviar un comentario');
+      return;
+    }
+    
+    // Validate comment content
+    if (!newComment.comment.trim() || newComment.comment.length === 0) {
+      alert('Escribe un comentario');
+      return;
+    }
+    
+    if (newComment.rating === 0) {
+      alert('Selecciona una calificación');
+      return;
+    }
+    
+    setLoading(true);
+    
+    try {
+      // Prepare comment data
+      const commentData = {
+        comentario: newComment.comment.trim(),
+        torreID: articuloID,
+        usuarioID: user.usuarioID || user.uid,
+        nickname: user.nickname || user.email.split('@')[0],
+        rating: newComment.rating
+      };
       
-      try {
-        // Submit to API
-        const response = await fetch(API_ENDPOINTS.COMENTARIOS.POST, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${user?.token || ''}`
-          },
-          body: JSON.stringify({
-            articuloID: articuloID,
-            nombre: newComment.userName,
-            email: newComment.userEmail,
-            comentario: newComment.comment,
-            calificacion: newComment.rating,
-            usuarioID: user?.usuarioID || null
-          })
-        });
-
-        if (response.ok) {
-          const savedComment = await response.json();
-          
-          // Add to local state
-          const comment = {
-            id: savedComment.comentarioID || comments.length + 1,
-            userName: newComment.userName,
-            userImage: "assets/img/blog/com-1.jpg",
-            date: new Date().toLocaleDateString('es-ES', { 
-              day: 'numeric', 
-              month: 'long', 
-              year: 'numeric' 
-            }),
-            rating: newComment.rating,
-            comment: newComment.comment
-          };
-          
-          setComments([...comments, comment]);
-          setNewComment({ userName: '', userEmail: '', comment: '', rating: 0 });
-          setHoverRating(0);
-        } else {
-          console.error('Error submitting comment:', response.statusText);
-        }
-      } catch (error) {
-        console.error('Error submitting comment:', error);
-        // Still add locally on API error
-        const comment = {
-          id: comments.length + 1,
-          userName: newComment.userName,
-          userImage: "assets/img/blog/com-1.jpg",
-          date: new Date().toLocaleDateString('es-ES', { 
-            day: 'numeric', 
-            month: 'long', 
-            year: 'numeric' 
-          }),
-          rating: newComment.rating,
-          comment: newComment.comment
-        };
-        
-        setComments([...comments, comment]);
-        setNewComment({ userName: '', userEmail: '', comment: '', rating: 0 });
-        setHoverRating(0);
-      } finally {
-        setLoading(false);
-      }
+      // Submit to API first
+      await dispatch(startEnviarComentario({
+        comentario: commentData.comentario,
+        torreID: commentData.torreID
+      }));
+      
+      // Then add to Firebase for real-time updates
+      await addCommentToAuction(articuloID, {
+        comentario: commentData.comentario,
+        usuarioID: commentData.usuarioID,
+        nickname: commentData.nickname,
+        rating: commentData.rating
+      });
+      
+      // Reset form
+      setNewComment({ userName: '', userEmail: '', comment: '', rating: 0 });
+      setHoverRating(0);
+      
+    } catch (error) {
+      console.error('Error enviando comentario:', error);
+      alert('Error al enviar comentario. Inténtalo de nuevo.');
+    } finally {
+      setLoading(false);
     }
   };
 

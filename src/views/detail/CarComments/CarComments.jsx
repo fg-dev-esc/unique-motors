@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux';
 import { useCarComments } from './useCarComments.jsx';
 import carCommentsData from './carCommentsData.json';
 
-const CarComments = () => {
-  const { car } = useSelector(state => state.auctionReducer);
+const CarComments = ({ car }) => {
+  const { user } = useSelector(state => state.userReducer);
   const {
     comments,
     newComment,
@@ -16,9 +16,10 @@ const CarComments = () => {
     renderStars,
     renderRatingInput,
     handleInputChange
-  } = useCarComments(car?.articuloID);
+  } = useCarComments(car?.torreID);
 
   const { labels } = carCommentsData;
+  const isAuthenticated = user?.email;
 
   return (
     <div className="car-single-review">
@@ -53,65 +54,48 @@ const CarComments = () => {
 
         <div className="blog-comments-form">
           <h3>{labels.leaveComment}</h3>
-          <form onSubmit={handleSubmitComment}>
-            <div className="row">
-              <div className="col-md-12">
-                <div className="form-group car-review-rating">
-                  <label>{labels.yourRating}</label>
-                  <div>
-                    {renderRatingInput()}
+          {!isAuthenticated ? (
+            <div className="alert alert-warning">
+              <i className="fas fa-exclamation-triangle me-2"></i>
+              Inicia sesión para poder comentar y calificar este vehículo.
+            </div>
+          ) : (
+            <form onSubmit={handleSubmitComment}>
+              <div className="row">
+                <div className="col-md-12">
+                  <div className="form-group car-review-rating">
+                    <label>{labels.yourRating}</label>
+                    <div>
+                      {renderRatingInput()}
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="col-md-6">
-                <div className="form-group">
-                  <input 
-                    type="text" 
-                    className="form-control" 
-                    placeholder={labels.yourName}
-                    value={newComment.userName}
-                    onChange={(e) => handleInputChange('userName', e.target.value)}
-                    required
-                  />
+                <div className="col-md-12">
+                  <div className="form-group">
+                    <textarea 
+                      className="form-control" 
+                      rows="5" 
+                      placeholder={labels.yourComment}
+                      value={newComment.comment}
+                      onChange={(e) => handleInputChange('comment', e.target.value)}
+                      required
+                    />
+                  </div>
+                  <button type="submit" className="theme-btn" disabled={loading}>
+                    {loading ? (
+                      <div className="loader-ripple me-2" style={{ transform: 'scale(0.3)' }}>
+                        <div></div>
+                        <div></div>
+                      </div>
+                    ) : (
+                      <i className="far fa-paper-plane"></i>
+                    )}
+                    {labels.submitComment}
+                  </button>
                 </div>
               </div>
-              <div className="col-md-6">
-                <div className="form-group">
-                  <input 
-                    type="email" 
-                    className="form-control" 
-                    placeholder={labels.yourEmail}
-                    value={newComment.userEmail}
-                    onChange={(e) => handleInputChange('userEmail', e.target.value)}
-                    required
-                  />
-                </div>
-              </div>
-              <div className="col-md-12">
-                <div className="form-group">
-                  <textarea 
-                    className="form-control" 
-                    rows="5" 
-                    placeholder={labels.yourComment}
-                    value={newComment.comment}
-                    onChange={(e) => handleInputChange('comment', e.target.value)}
-                    required
-                  />
-                </div>
-                <button type="submit" className="theme-btn" disabled={loading}>
-                  {loading ? (
-                    <div className="loader-ripple me-2" style={{ transform: 'scale(0.3)' }}>
-                      <div></div>
-                      <div></div>
-                    </div>
-                  ) : (
-                    <i className="far fa-paper-plane"></i>
-                  )}
-                  {labels.submitComment}
-                </button>
-              </div>
-            </div>
-          </form>
+            </form>
+          )}
         </div>
       </div>
     </div>

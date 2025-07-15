@@ -9,7 +9,7 @@ import {
   setTorreComentarios,
   setFechaFin,
   setImagenPrincipal 
-} from "./subastaSlice";
+} from "./auctionSlice";
 
 export const startGetSubastaTorres = (id) => {
   return async (dispatch) => {
