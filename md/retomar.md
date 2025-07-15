@@ -13,6 +13,9 @@
 - no mezclar estilos con logica ni fix con add
 - validacion constante con lead antes de aplicar cambios
 - mensajes de commit en minuscula sin referencias externas
+- **NUNCA** incluir referencias a Claude o herramientas externas
+- **SIEMPRE** solicitar confirmacion antes de hacer commits
+- commits solo contienen el mensaje, sin comentarios adicionales
 
 ## progreso actual
 
