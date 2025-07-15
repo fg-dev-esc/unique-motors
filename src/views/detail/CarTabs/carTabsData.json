@@ -6,7 +6,7 @@
   "tabs": {
     "description": "Descripción",
     "additionalInfo": "Información adicional",
-    "bidHistory": "Historial de pujas",
+    "bidHistory": "Historial de ofertas",
     "comments": "Comentarios"
   },
   "config": {
@@ -19,8 +19,8 @@
   "labels": {
     "loginButton": "Iniciar sesión",
     "registerButton": "Registrarse",
-    "bidAmount": "Monto de puja",
-    "placeBid": "Realizar puja"
+    "bidAmount": "Monto de oferta",
+    "placeBid": "Realizar oferta"
   },
   "placeholders": {
     "yourName": "Tu nombre",

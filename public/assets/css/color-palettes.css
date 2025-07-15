@@ -600,7 +600,7 @@ ELEMENTOS ESPECÍFICOS DE SUBASTA SEGURA - HISTORIAL Y COMENTARIOS
   color: #fd7e14 !important; 
 }
 
-/* Textos azules en historial de pujas - cambiar al tema */
+/* Textos azules en historial de ofertas - cambiar al tema */
 .theme-subasta .blog-comments-single .text-primary,
 .theme-subasta .bid-avatar-container .text-primary,
 .theme-subasta .bidding-history .text-primary { 
@@ -760,7 +760,7 @@ CARDS DE AUTOS - TAMAÑOS FIJOS
   }
 }
 
-/* Texto danger específico en historial de pujas */
+/* Texto danger específico en historial de ofertas */
 .theme-subasta .auction-summary .text-danger,
 .theme-subasta .auction-summary span.text-danger,
 .theme-subasta .bidding-history .text-danger,

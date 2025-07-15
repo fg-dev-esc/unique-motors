@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { doc, onSnapshot } from 'firebase/firestore';
 import { db } from '../../db/firebase';
 import { consLogged } from '../../const/consLogged';
-import { setFechaFin, setPujaMayor, setTorreComentarios } from '../../redux/features/auction/auctionSlice';
+import { setFechaFin, setOfertaMayor, setTorreComentarios } from '../../redux/features/auction/auctionSlice';
 import SessionMessage from '../feedback/SessionMessage';
 import BiddingForm from './BiddingForm';
 import BiddingButtons from './BiddingButtons';
@@ -11,7 +11,7 @@ import BiddingList from './BiddingList';
 
 export const AuctionBidding = ({ torreID }) => {
   const dispatch = useDispatch();
-  const [pujas, setPujas] = useState([]);
+  const [ofertas, setOfertas] = useState([]);
   const { logged, user } = useSelector(state => state.userReducer);
   const sesion = logged !== consLogged.LOGGED || !user.email;
 
@@ -25,9 +25,9 @@ export const AuctionBidding = ({ torreID }) => {
         dispatch(setTorreComentarios(comentarios));
         
         if (!sesion) {          
-          const arregloPujas = documento.data().pujas.sort((a,b)=> b.Monto - a.Monto);
-          setPujas(arregloPujas.slice(0,5));
-          dispatch(setPujaMayor({monto:arregloPujas[0].Monto, usuario:arregloPujas[0].UsuarioPujaID}));
+          const arregloOfertas = documento.data().ofertas.sort((a,b)=> b.Monto - a.Monto);
+          setOfertas(arregloOfertas.slice(0,5));
+          dispatch(setOfertaMayor({monto:arregloOfertas[0].Monto, usuario:arregloOfertas[0].UsuarioOfertaID}));
         };
       }
     );
@@ -45,7 +45,7 @@ export const AuctionBidding = ({ torreID }) => {
     <div className="auction-bidding">
       <BiddingForm />
       <BiddingButtons />
-      <BiddingList pujas={pujas} />
+      <BiddingList ofertas={ofertas} />
     </div>
   );
 };

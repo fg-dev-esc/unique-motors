@@ -85,7 +85,7 @@ export const optimizeBidHistory = (bidsHistory) => {
   };
 
   return {
-    pujasRecientes: recentBids,
+    ofertasRecientes: recentBids,
     estadisticas: estadisticas,
     // Full history available on demand
     tieneHistorialCompleto: bidsHistory.length > 10
@@ -115,9 +115,9 @@ export const createAuctionSummary = (auctionData) => {
       ).slice(0, 3) : [],
     
     // Current bid status
-    estadoPuja: {
+    estadoOferta: {
       montoActual: auctionData.montoSalida, // This would be updated with current bid
-      tienePujas: false // This would be updated based on bid history
+      tieneOfertas: false // This would be updated based on bid history
     }
   };
 };
@@ -137,9 +137,9 @@ export const OPTIMIZED_API_STRUCTURE = {
     subCategoria: "string",
     estado: "string",
     especificacionesPreview: "array[3]",
-    estadoPuja: {
+    estadoOferta: {
       montoActual: "number",
-      tienePujas: "boolean"
+      tieneOfertas: "boolean"
     }
   },
   

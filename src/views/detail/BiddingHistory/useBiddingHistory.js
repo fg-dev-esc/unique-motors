@@ -42,36 +42,36 @@ export const useBiddingHistory = (carPrice, isActive = true, car = null) => {
       
       try {
         setLoading(true);
-        const result = await fetch('get', `${_URL_DEV}/AdminPujas/GetPujasTorre/${torreID}`);
+        const result = await fetch('get', `${_URL_DEV}/AdminOfertas/GetOfertasTorre/${torreID}`);
         
         if (result.ok && result.data) {
-          const pujas = result.data;
+          const ofertas = result.data;
           
           // Transform API data to component format
-          const transformedBids = pujas.map((puja, index) => ({
-            id: puja.pujaID,
-            bidderName: puja.usuario || 'Usuario Anónimo',
-            bidAmount: puja.monto,
-            bidTime: puja.fecha,
+          const transformedBids = ofertas.map((oferta, index) => ({
+            id: oferta.ofertaID,
+            bidderName: oferta.usuario || 'Usuario Anónimo',
+            bidAmount: oferta.monto,
+            bidTime: oferta.fecha,
             isWinning: index === 0, // First bid is current winner
             bidType: 'manual', // API doesn't distinguish, default to manual
-            usuarioID: puja.usuarioID,
-            pujaID: puja.pujaID
+            usuarioID: oferta.usuarioID,
+            ofertaID: oferta.ofertaID
           }));
           
           setBiddingHistory(transformedBids);
           
           // Calculate auction details from bid data
-          const currentBid = pujas.length > 0 ? pujas[0].monto : (carPrice || 0);
-          const startingBid = pujas.length > 0 ? pujas[pujas.length - 1].monto : (carPrice || 0);
+          const currentBid = ofertas.length > 0 ? ofertas[0].monto : (carPrice || 0);
+          const startingBid = ofertas.length > 0 ? ofertas[ofertas.length - 1].monto : (carPrice || 0);
           
           setAuctionDetails({
             currentBid,
             startingBid,
             reservePrice: currentBid * 1.1, // Estimate reserve as 10% above current
             bidIncrement: 10000,
-            totalBids: pujas.length,
-            uniqueBidders: new Set(pujas.map(p => p.usuarioID)).size,
+            totalBids: ofertas.length,
+            uniqueBidders: new Set(ofertas.map(o => o.usuarioID)).size,
             timeRemaining: car?.fechaFin || car?.fechaVencimiento || '',
             auctionEndTime: '',
             auctionStartTime: ''
@@ -83,7 +83,7 @@ export const useBiddingHistory = (carPrice, isActive = true, car = null) => {
         }
       } catch (err) {
         console.error('Error fetching bidding data:', err);
-        setError('Error al cargar el historial de pujas');
+        setError('Error al cargar el historial de ofertas');
       } finally {
         setLoading(false);
       }
@@ -117,12 +117,12 @@ export const useBiddingHistory = (carPrice, isActive = true, car = null) => {
       const bidAmount = parseInt(newBid.bidAmount);
       
       if (bidAmount <= auctionDetails.currentBid) {
-        alert(`La puja debe ser mayor a ${formatCurrency(auctionDetails.currentBid)}`);
+        alert(`La oferta debe ser mayor a ${formatCurrency(auctionDetails.currentBid)}`);
         return;
       }
 
       if (bidAmount < auctionDetails.currentBid + auctionDetails.bidIncrement) {
-        alert(`La puja mínima debe ser ${formatCurrency(auctionDetails.currentBid + auctionDetails.bidIncrement)}`);
+        alert(`La oferta mínima debe ser ${formatCurrency(auctionDetails.currentBid + auctionDetails.bidIncrement)}`);
         return;
       }
 
@@ -133,34 +133,34 @@ export const useBiddingHistory = (carPrice, isActive = true, car = null) => {
           monto: bidAmount
         };
         
-        const result = await fetch('post', `${_URL_DEV}/Pujas/Pujar`, bidData);
+        const result = await fetch('post', `${_URL_DEV}/Ofertas/Ofertar`, bidData);
         
         if (result.ok) {
           // Refresh bidding history after successful bid
-          const refreshResult = await fetch('get', `${_URL_DEV}/AdminPujas/GetPujasTorre/${torreID}`);
+          const refreshResult = await fetch('get', `${_URL_DEV}/AdminOfertas/GetOfertasTorre/${torreID}`);
           
           if (refreshResult.ok && refreshResult.data) {
-            const pujas = refreshResult.data;
+            const ofertas = refreshResult.data;
             
-            const transformedBids = pujas.map((puja, index) => ({
-              id: puja.pujaID,
-              bidderName: puja.usuario || 'Usuario Anónimo',
-              bidAmount: puja.monto,
-              bidTime: puja.fecha,
+            const transformedBids = ofertas.map((oferta, index) => ({
+              id: oferta.ofertaID,
+              bidderName: oferta.usuario || 'Usuario Anónimo',
+              bidAmount: oferta.monto,
+              bidTime: oferta.fecha,
               isWinning: index === 0,
               bidType: 'manual',
-              usuarioID: puja.usuarioID,
-              pujaID: puja.pujaID
+              usuarioID: oferta.usuarioID,
+              ofertaID: oferta.ofertaID
             }));
             
             setBiddingHistory(transformedBids);
             
-            const currentBid = pujas.length > 0 ? pujas[0].monto : bidAmount;
+            const currentBid = ofertas.length > 0 ? ofertas[0].monto : bidAmount;
             setAuctionDetails({
               ...auctionDetails,
               currentBid,
-              totalBids: pujas.length,
-              uniqueBidders: new Set(pujas.map(p => p.usuarioID)).size
+              totalBids: ofertas.length,
+              uniqueBidders: new Set(ofertas.map(o => o.usuarioID)).size
             });
             
             const optimized = optimizeBidHistory(transformedBids);
@@ -168,13 +168,13 @@ export const useBiddingHistory = (carPrice, isActive = true, car = null) => {
           }
           
           setNewBid({ bidAmount: '', bidderName: '', bidderEmail: '', comment: '' });
-          alert('¡Puja realizada exitosamente!');
+          alert('¡Oferta realizada exitosamente!');
         } else {
-          alert('Error al realizar la puja. Por favor intenta de nuevo.');
+          alert('Error al realizar la oferta. Por favor intenta de nuevo.');
         }
       } catch (err) {
         console.error('Error placing bid:', err);
-        alert('Error al realizar la puja. Verifica tu conexión.');
+        alert('Error al realizar la oferta. Verifica tu conexión.');
       }
     }
   };
@@ -184,7 +184,7 @@ export const useBiddingHistory = (carPrice, isActive = true, car = null) => {
   };
 
   const getBidTypeLabel = (bidType) => {
-    return bidType === 'automatic' ? 'Puja Automática' : 'Puja Manual';
+    return bidType === 'automatic' ? 'Oferta Automática' : 'Oferta Manual';
   };
 
   const handleInputChange = (field, value) => {

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import BiddingInterface from './BiddingInterface/BiddingInterface';
+import AuctionProgressBar from './AuctionProgressBar';
 import { useCarInfo } from './useCarInfo';
 import { useBiddingHistory } from '../BiddingHistory/useBiddingHistory';
 const CarInfo = ({ hasDeposit = false }) => {
@@ -27,6 +28,11 @@ const CarInfo = ({ hasDeposit = false }) => {
   return (
     <div className="col-lg-4">
       <div className="car-single-info h-100 d-flex flex-column">
+        {/* Auction Progress Bar - Full width at top */}
+        <div className="col-12 p-0 mb-3">
+          <AuctionProgressBar fechaFin={car.fechaFin} />
+        </div>
+        
         {/* Header Section - Fixed at top */}
         <div className="car-single-header flex-shrink-0 mb-4">
           <h3 className="car-single-title mb-3">{car.nombre}</h3>
@@ -66,7 +72,7 @@ const CarInfo = ({ hasDeposit = false }) => {
               <div className="price-label text-muted small">{data.labels.currentBid}</div>
               {isActive && (
                 <div className="mt-3">
-                  <a href="#pujar" className="btn btn-primary w-100">
+                  <a href="#ofertar" className="btn btn-primary w-100">
                     <i className="fas fa-gavel me-2"></i>
                     {data.labels.bidNow}
                   </a>
@@ -98,7 +104,7 @@ const CarInfo = ({ hasDeposit = false }) => {
           
           {/* Bidding Interface - Only show if user is logged in */}
           {isAuthenticated && isActive && (
-            <div className="car-single-bidding flex-shrink-0" id="pujar">
+            <div className="car-single-bidding flex-shrink-0" id="ofertar">
               <div className="bidding-section">
                 <h5 className="section-title mb-3">
                   <i className="fas fa-gavel me-2"></i>

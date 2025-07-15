@@ -26,7 +26,7 @@ Esta documentación define la estructura de datos y endpoints del backend que al
 ### Funcionalidades Cubiertas
 - ✅ Autenticación y usuarios
 - ✅ Gestión de artículos/vehículos
-- ✅ Sistema de subastas y pujas
+- ✅ Sistema de subastas y ofertas
 - ✅ Compradores y vendedores
 - ✅ Categorías dinámicas
 - ✅ Pagos y garantías
@@ -145,18 +145,18 @@ interface TorreDTO {
 }
 ```
 
-### **Pujas**
+### **Ofertas**
 ```typescript
-interface PujaDTO {
+interface OfertaDTO {
   torreID: string
-  monto: number                  // monto de la puja
+  monto: number                  // monto de la oferta
 }
 
 interface AdjudicarDTO {
   torreID: string
   usuarioEstableceAdjudicacionID: string
   usuarioAdjudicadoID: string
-  pujaID: string
+  ofertaID: string
 }
 ```
 
@@ -259,10 +259,10 @@ interface CompradorDocumentoDTO {
 - `POST /api/Subastas/PostArticulosSubasta` - Agregar artículos a subasta
 - `GET /api/Subastas/GetTorres/{SubastaID}` - Torres de una subasta
 
-### **Pujas**
-- `POST /api/Pujas/Pujar` - Realizar puja
-- `GET /api/Pujas/GetPujasUsuario/{UsuarioPujaID}/{TorreID}` - Pujas de usuario
-- `POST /api/AdminPujas/AdjudicarTorre` - Adjudicar torre
+### **Ofertas**
+- `POST /api/Ofertas/Ofertar` - Realizar oferta
+- `GET /api/Ofertas/GetOfertasUsuario/{UsuarioOfertaID}/{TorreID}` - Ofertas de usuario
+- `POST /api/AdminOfertas/AdjudicarTorre` - Adjudicar torre
 
 ### **Compradores**
 - `GET /api/Compradores/GetCompradores` - Listar compradores
@@ -329,7 +329,7 @@ FormData {
    - Tiempo estimado: 12 horas
 
 3. **[feat] Sistema de Subastas**
-   - Dependencias: API de subastas y pujas
+   - Dependencias: API de subastas y ofertas
    - Tiempo estimado: 16 horas
 
 ### Optimizaciones (Fase 4)

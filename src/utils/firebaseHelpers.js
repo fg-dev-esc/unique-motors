@@ -13,7 +13,7 @@ export const subscribeToAuction = (torreId, callback) => {
       console.log('🔥 Firebase document data:', data);
       const fechaFin = data.fechaFin;
       const comentarios = data.comentarios?.sort((a, b) => new Date(b.Fecha) - new Date(a.Fecha)) || [];
-      const pujas = data.pujas?.sort((a, b) => b.Monto - a.Monto) || [];
+      const ofertas = data.ofertas?.sort((a, b) => b.Monto - a.Monto) || [];
       
       console.log('🔥 Firebase comments found:', comentarios.length);
       
@@ -21,10 +21,10 @@ export const subscribeToAuction = (torreId, callback) => {
         id: documento.id,
         fechaFin,
         comentarios,
-        pujas: pujas.slice(0, 5), // Solo las top 5 pujas
-        pujaMayor: pujas.length > 0 ? {
-          monto: pujas[0].Monto,
-          usuario: pujas[0].UsuarioPujaID
+        ofertas: ofertas.slice(0, 5), // Solo las top 5 ofertas
+        ofertaMayor: ofertas.length > 0 ? {
+          monto: ofertas[0].Monto,
+          usuario: ofertas[0].UsuarioOfertaID
         } : null,
         ...data
       });
@@ -42,16 +42,16 @@ export const subscribeToAuction = (torreId, callback) => {
 export const addBidToAuction = async (torreId, bidData) => {
   const torreRef = doc(db, 'torres', torreId);
   
-  const puja = {
+  const oferta = {
     Monto: bidData.monto,
-    UsuarioPujaID: bidData.usuarioID,
+    UsuarioOfertaID: bidData.usuarioID,
     Nickname: bidData.nickname,
     Fecha: new Date().toISOString(),
     Comentario: bidData.comentario || ""
   };
   
   await updateDoc(torreRef, {
-    pujas: arrayUnion(puja)
+    ofertas: arrayUnion(oferta)
   });
 };
 

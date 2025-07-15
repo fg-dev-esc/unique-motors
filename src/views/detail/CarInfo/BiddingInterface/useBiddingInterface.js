@@ -66,14 +66,14 @@ export const useBiddingInterface = () => {
     setBidError('');
     
     try {
-      // Aquí iría la lógica para enviar la puja
+      // Aquí iría la lógica para enviar la oferta
       // await submitBid(car.id, bidAmountNumber);
       
       setBidAmount('');
       setBidError('');
       // Mostrar mensaje de éxito
     } catch (error) {
-      setBidError('Error al realizar la puja');
+      setBidError('Error al realizar la oferta');
     } finally {
       setBidding(false);
     }
