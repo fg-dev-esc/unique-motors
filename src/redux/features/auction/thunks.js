@@ -46,14 +46,15 @@ export const startGetSubastaTorre = (id) => {
 export const startPuja = (body) => {
   return async (dispatch) => {
     try {
-      console.log('📤 startPuja sending:', body);
       const res = await fetch('post', `${_URL_DEV}/Pujas/Pujar`, body);
-      console.log('📥 startPuja response:', res);
       if (res.ok) {
         dispatch(setPujaMartillo(res.data));
+        return { payload: res, type: 'startPuja/fulfilled' };
       }
+      return { payload: res, type: 'startPuja/rejected' };
     } catch (error) {
       console.error('Problemas con hacer la puja:', error);
+      return { payload: error, type: 'startPuja/rejected' };
     }
   };
 };
@@ -61,7 +62,6 @@ export const startPuja = (body) => {
 export const startSetPujaMayor = (monto, usuario) => {
   return async (dispatch) => {
     try {
-      console.log('Setting puja mayor:', monto, usuario);
       dispatch(setPujaMayor({ monto, usuario }));
     } catch (error) {
       console.error('Problemas al traer la cantidad mayor:', error);
@@ -84,7 +84,7 @@ export const startEnviarComentario = (body) => {
     try {
       const res = await fetch('post', `${_URL_DEV}/Comentarios`, body);
       if (res.ok) {
-        console.log('Comentario Agregado');
+        // Comentario agregado exitosamente
       }
     } catch (error) {
       console.log('Error enviando comentario:', error);

@@ -41,7 +41,6 @@ const BiddingInterface = ({ car, isActive, hasDeposit: propHasDeposit = false, c
   // Handle deposit completion
   const handleDepositComplete = (paymentData) => {
     setHasDeposit(true);
-    console.log('Deposit completed:', paymentData);
   };
 
   // Handle add increment buttons  
@@ -97,24 +96,21 @@ const BiddingInterface = ({ car, isActive, hasDeposit: propHasDeposit = false, c
       fecha: new Date().toISOString()
     };
     
-    // Debug data before sending
-    console.log('🔍 BiddingInterface Debug:', {
-      subastaTorre,
-      bidData,
-      car: {
-        articuloID: car?.articuloID,
-        precio: car?.precio
-      },
-      urlParam: window.location.pathname.split('/').pop(),
-      torreIDSource: subastaTorre?.torreID ? 'subastaTorre' : 'car.articuloID'
-    });
     
     // Dispatch the same way as BiddingForm
-    dispatch(startPuja(bidData));
+    const result = await dispatch(startPuja(bidData));
     
-    // Clear form like BiddingForm does
+    // If bid was successful, update the current bid amount for next bid
+    if (result?.payload?.ok || result?.type?.includes('fulfilled')) {
+      // Update bidAmount to be the new minimum (current bid + 10000)
+      const newMinimum = amount + 10000;
+      setBidAmount(newMinimum);
+    } else {
+      // If failed, reset to original minimum
+      setBidAmount(minimumBid);
+    }
+    
     setError('');
-    setBidAmount(minimumBid);
     setIsLoading(false);
   };
   
