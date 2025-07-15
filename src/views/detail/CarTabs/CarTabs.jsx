@@ -37,6 +37,7 @@ const CarTabs = () => {
               aria-controls="tab1" 
               aria-selected={activeTab === 'description'}
             >
+              <i className="fas fa-file-text me-2"></i>
               {data.tabs.description}
             </button>
             <button 
@@ -48,6 +49,7 @@ const CarTabs = () => {
               aria-controls="tab2" 
               aria-selected={activeTab === 'additional'}
             >
+              <i className="fas fa-info-circle me-2"></i>
               {data.tabs.additionalInfo}
             </button>
             <button 
@@ -72,7 +74,7 @@ const CarTabs = () => {
               aria-selected={activeTab === 'reviews'}
             >
               <i className="fas fa-comments me-2"></i>
-              {data.tabs.comments} (03)
+              {data.tabs.comments}
             </button>
           </div>
         </nav>
