@@ -535,13 +535,25 @@ body {
 
 /* Estilos para etiquetas superpuestas */
 .car-img.pos-rel .badge {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
-  border-radius: 4px;
-  padding: 4px 8px;
+  border-radius: 6px;
+  padding: 6px 12px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
+/* Estilos globales para badges más grandes */
+.badge {
+  font-size: 14px !important;
+  padding: 6px 12px !important;
+  border-radius: 6px !important;
+}
+
+/* Badges específicos de tamaño grande */
+.badge.px-3.py-2 {
+  font-size: 16px !important;
+  padding: 8px 16px !important;
+}
 
 /* Estilos para el Hero Slider */
 .hero-slider {
