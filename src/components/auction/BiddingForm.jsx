@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { startPuja } from "../../redux/features/auction/thunks";
+import { startOferta } from "../../redux/features/auction/thunks";
 
 const MultiploMil = (numero) => numero % 1000 === 0;
 
@@ -12,12 +12,12 @@ export const BiddingForm = () => {
   const [err, setErr] = useState('');
   const [monto, setMonto] = useState('');
 
-  // Calcular ofertas sugeridas (mayor puja actual + incrementos)
-  const mayorPuja = subastaTorre?.mayorPuja || 0;
+  // Calcular ofertas sugeridas (mayor oferta actual + incrementos)
+  const mayorOferta = subastaTorre?.mayorOferta || 0;
   const ofertasSugeridas = [
-    mayorPuja + 1000,
-    mayorPuja + 5000,
-    mayorPuja + 10000
+    mayorOferta + 1000,
+    mayorOferta + 5000,
+    mayorOferta + 10000
   ];
     
   const handleChange = (e) => {
@@ -27,7 +27,7 @@ export const BiddingForm = () => {
     setForm({
       monto: numValue, 
       torreID: subastaTorre?.torreID, 
-      usuarioPujaID: user.usuarioID, 
+      usuarioOfertaID: user.usuarioID, 
       fecha: new Date()
     });
     setErr('');
@@ -48,8 +48,8 @@ export const BiddingForm = () => {
       setErr('La oferta debe ser mayor a 0');
       return;
     }
-    console.log('✅ Enviando puja:', form);
-    dispatch(startPuja(form));
+    console.log('✅ Enviando oferta:', form);
+    dispatch(startOferta(form));
     setErr('');
     setMonto('');
   };
@@ -65,7 +65,7 @@ export const BiddingForm = () => {
     setForm({
       monto: amount, 
       torreID: subastaTorre?.torreID, 
-      usuarioPujaID: user.usuarioID, 
+      usuarioOfertaID: user.usuarioID, 
       fecha: new Date()
     });
     setErr('');

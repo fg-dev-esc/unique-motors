@@ -5,8 +5,8 @@ export const auctionSlice = createSlice({
     initialState: {
       subastaTorres:{},
       subastaTorre:{},
-      pujaMartillo:{},
-      pujaMayor:{
+      ofertaMartillo:{},
+      ofertaMayor:{
         monto:0, 
         usuario:''
       },
@@ -14,9 +14,9 @@ export const auctionSlice = createSlice({
       imgPrincipal:'',
       fechaFin:0,
       loading:false,
-      loadingPuja: false,
-      errorPuja: null,
-      pujas: [],
+      loadingOferta: false,
+      errorOferta: null,
+      ofertas: [],
       tiempoRestante: null
     },
     reducers: {
@@ -27,12 +27,12 @@ export const auctionSlice = createSlice({
         state.subastaTorre = payload;
         state.imgPrincipal = payload.urlImgPrincipal;
       },
-      setPujaMartillo:(state, {payload}) => {
-        state.pujaMartillo = payload;
+      setOfertaMartillo:(state, {payload}) => {
+        state.ofertaMartillo = payload;
       },
-      setPujaMayor:(state, {payload}) =>{
-        state.pujaMayor.monto = payload.monto;
-        state.pujaMayor.usuario = payload.usuario;
+      setOfertaMayor:(state, {payload}) =>{
+        state.ofertaMayor.monto = payload.monto;
+        state.ofertaMayor.usuario = payload.usuario;
       },
       setTorreComentarios:(state, {payload}) => {
         state.comentarios = payload;
@@ -46,31 +46,31 @@ export const auctionSlice = createSlice({
       setLoading:(state, {payload}) =>{
         state.loading = payload;
       },
-      setLoadingPuja: (state, { payload }) => {
-        state.loadingPuja = payload;
+      setLoadingOferta: (state, { payload }) => {
+        state.loadingOferta = payload;
       },
-      setErrorPuja: (state, { payload }) => {
-        state.errorPuja = payload;
+      setErrorOferta: (state, { payload }) => {
+        state.errorOferta = payload;
       },
-      setPujas: (state, { payload }) => {
-        state.pujas = payload;
+      setOfertas: (state, { payload }) => {
+        state.ofertas = payload;
       },
       setTiempoRestante: (state, { payload }) => {
         state.tiempoRestante = payload;
       },
-      addPuja: (state, { payload }) => {
-        state.pujas.unshift(payload);
-        if (state.pujas.length > 10) {
-          state.pujas = state.pujas.slice(0, 10);
+      addOferta: (state, { payload }) => {
+        state.ofertas.unshift(payload);
+        if (state.ofertas.length > 10) {
+          state.ofertas = state.ofertas.slice(0, 10);
         }
       },
       clearAuctionData: (state) => {
         state.subastaTorre = {};
-        state.pujaMayor = { monto: 0, usuario: '' };
+        state.ofertaMayor = { monto: 0, usuario: '' };
         state.fechaFin = 0;
         state.comentarios = [];
-        state.pujas = [];
-        state.errorPuja = null;
+        state.ofertas = [];
+        state.errorOferta = null;
         state.tiempoRestante = null;
       }
     }
@@ -81,16 +81,16 @@ export const auctionSlice = createSlice({
 export const { 
   setSubastaTorres, 
   setSubastaTorre, 
-  setPujaMartillo, 
-  setPujaMayor, 
+  setOfertaMartillo, 
+  setOfertaMayor, 
   setTorreComentarios, 
   setFechaFin, 
   setImagenPrincipal, 
   setLoading,
-  setLoadingPuja,
-  setErrorPuja,
-  setPujas,
+  setLoadingOferta,
+  setErrorOferta,
+  setOfertas,
   setTiempoRestante,
-  addPuja,
+  addOferta,
   clearAuctionData
 } = auctionSlice.actions;

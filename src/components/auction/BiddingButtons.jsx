@@ -1,20 +1,20 @@
 import { useDispatch, useSelector } from "react-redux";
-import { startPuja } from "../../redux/features/auction/thunks";
+import { startOferta } from "../../redux/features/auction/thunks";
 
 export const BiddingButtons = () => {
   const dispatch = useDispatch();
-  const { subastaTorre, pujaMayor } = useSelector(state => state.auctionReducer);
+  const { subastaTorre, ofertaMayor } = useSelector(state => state.auctionReducer);
   const { user } = useSelector(state => state.userReducer);
 
   const handleQuickBid = (increment) => {
-    const newAmount = (pujaMayor?.monto || 0) + increment;
+    const newAmount = (ofertaMayor?.monto || 0) + increment;
     const form = {
       monto: newAmount,
       torreID: subastaTorre?.torreID,
-      usuarioPujaID: user.usuarioID,
+      usuarioOfertaID: user.usuarioID,
       fecha: new Date()
     };
-    dispatch(startPuja(form));
+    dispatch(startOferta(form));
   };
 
   return (

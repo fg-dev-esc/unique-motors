@@ -30,7 +30,7 @@ const BiddingHistory = ({ carPrice, isActive = true, car = null }) => {
         <div className="blog-comments">
           <div className="d-flex justify-content-center py-5">
             <div className="spinner-border text-primary" role="status">
-              <span className="visually-hidden">Cargando historial de pujas...</span>
+              <span className="visually-hidden">Cargando historial de ofertas...</span>
             </div>
           </div>
         </div>
@@ -104,7 +104,7 @@ const BiddingHistory = ({ carPrice, isActive = true, car = null }) => {
           {biddingHistory.length === 0 ? (
             <div className="text-center py-4">
               <i className="fas fa-gavel fs-1 text-muted mb-3"></i>
-              <p className="text-muted">No hay pujas registradas aún. ¡Sé el primero en pujar!</p>
+              <p className="text-muted">No hay ofertas registradas aún. ¡Sé el primero en ofertar!</p>
             </div>
           ) : (
             biddingHistory.map((bid) => (
@@ -128,7 +128,7 @@ const BiddingHistory = ({ carPrice, isActive = true, car = null }) => {
                   </h5>
                   <span><i className="far fa-clock"></i> {formatTime(bid.bidTime)}</span>
                   <p>
-                    <strong>Monto de la puja: {formatCurrency(bid.bidAmount)}</strong>
+                    <strong>Monto de la oferta: {formatCurrency(bid.bidAmount)}</strong>
                     {bid.isWinning && (
                       <span className="text-warning ms-2">
                         <i className="fas fa-trophy"></i> {labels.currentWinningBid}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { startPuja } from '../../../../redux/features/auction/thunks';
+import { startOferta } from '../../../../redux/features/auction/thunks';
 import { useBiddingInterface } from './useBiddingInterface';
 import DepositGuarantee from '../../../../components/payment/DepositGuarantee';
 
@@ -98,7 +98,7 @@ const BiddingInterface = ({ car, isActive, hasDeposit: propHasDeposit = false, c
     
     
     // Dispatch the same way as BiddingForm
-    const result = await dispatch(startPuja(bidData));
+    const result = await dispatch(startOferta(bidData));
     
     // If bid was successful, update the current bid amount for next bid
     if (result?.payload?.ok || result?.type?.includes('fulfilled')) {

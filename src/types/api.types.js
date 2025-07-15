@@ -120,17 +120,17 @@ export const TorreDTO = {
 };
 
 // ===== BIDDING TYPES =====
-export const PostPujaDTO = {
+export const PostOfertaDTO = {
   torreID: '',
   monto: 0
 };
 
-export const PujaDTO = {
-  pujaID: '',
+export const OfertaDTO = {
+  ofertaID: '',
   torreID: '',
   compradorID: '',
   monto: 0,
-  fechaPuja: '',
+  fechaOferta: '',
   esGanadora: false
 };
 

@@ -1,12 +1,12 @@
 import { formatCurrency } from "../../utils/formatCurrency";
 import { crearFechaConMinutos } from "../../utils/createDateString";
 
-export const BiddingList = ({ pujas }) => {
-  if (!pujas || pujas.length === 0) {
+export const BiddingList = ({ ofertas }) => {
+  if (!ofertas || ofertas.length === 0) {
     return (
       <div className="bidding-list">
         <div className="text-center text-muted">
-          No hay pujas disponibles
+          No hay ofertas disponibles
         </div>
       </div>
     );
@@ -14,14 +14,14 @@ export const BiddingList = ({ pujas }) => {
 
   return (
     <div className="bidding-list">
-      <h6 className="mb-3">Pujas Recientes</h6>
+      <h6 className="mb-3">Ofertas Recientes</h6>
       <div className="list-group">
-        {pujas.map((puja, index) => (
+        {ofertas.map((oferta, index) => (
           <div key={index} className="list-group-item d-flex justify-content-between align-items-center">
             <div>
-              <strong>{formatCurrency(puja.Monto)}</strong>
+              <strong>{formatCurrency(oferta.Monto)}</strong>
               <small className="text-muted d-block">
-                {puja.UsuarioPujaID} • {crearFechaConMinutos(puja.Fecha)}
+                {oferta.UsuarioOfertaID} • {crearFechaConMinutos(oferta.Fecha)}
               </small>
             </div>
             {index === 0 && (
